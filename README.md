@@ -1,6 +1,6 @@
 {{date.DATA}} 
 
-地区：{{region.DATA}} 
+城市：{{city.DATA}} 
 天气：{{weather.DATA}} 
 最低气温: {{min_wd.DATA}} 
 最高气温: {{max_wd.DATA}} 
