@@ -31,34 +31,38 @@ def get_access_token():
     return access_token
  
  
-def get_weather(region):
+# 获取温度
+def get_weather(city_id):
+    # 时间戳
+    t = (int(round(time() * 1000)))
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+        "Referer": "http://www.weather.com.cn/",
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    key = config["weather_key"]
-    region_url = "https://geoapi.qweather.com/v2/city/lookup?location={}&key={}".format(region, key)
-    response = get(region_url, headers=headers).json()
-    if response["code"] == "404":
-        print("推送消息失败，请检查地区名是否有误！")
-        os.system("pause")
-        sys.exit(1)
-    elif response["code"] == "401":
-        print("推送消息失败，请检查和风天气key是否正确！")
-        os.system("pause")
-        sys.exit(1)
-    else:
-        # 获取地区的location--id
-        location_id = response["location"][0]["id"]
-    weather_url = "https://devapi.qweather.com/v7/weather/now?location={}&key={}".format(location_id, key)
-    response = get(weather_url, headers=headers).json()
-    # 天气
-    weather = response["now"]["text"]
-    # 当前温度
-    temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
-    # 风向
-    wind_dir = response["now"]["windDir"]
-    return weather, temp, wind_dir
+    url = f"http://d1.weather.com.cn/weather_index/{city_id}.html?_={t}"
+    try:
+        response = requests.get(url, headers=headers)
+        response.encoding = "utf-8"
+        response_data_0 = eval(re.findall("var cityDZ =(.*?);var", response.text)[0])
+        response_data_2 = eval(re.findall("var dataSK =(.*?);var", response.text)[0])
+        response_data_3 = eval(re.findall("var dataZS =(.*?);var", response.text)[0])
+        weather_data = response_data_0["weatherinfo"]
+        # 城市名称
+        city_name = weather_data['city']
+        # 最高气温
+        max_wd = weather_data["temp"]
+        # 最低气温
+        min_wd = weather_data["tempn"]
+        # 天气
+        weather = weather_data["weather"]
+        # 相对湿度
+        shidu = response_data_2['SD']
+        # 生活指数
+        zs=response_data_3['zs']
+        tips = '\n晨练'+zs['cl_hint']+':'+zs['cl_des_s']+'\n穿衣小贴士:'+zs['ct_des_s']
+        print('[INFO]天气模块加载正常')
+        return city_name, weather, max_wd, min_wd,shidu, tips
+    except:print('[INFO]天气模块加载失败,请检查和调试接口')
  
  
 def get_birthday(birthday, year, today):
