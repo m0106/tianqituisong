@@ -7,7 +7,6 @@
 相对湿度:{{shidu.DATA}} 
 生活指数:{{tips.DATA}} 
  
-
 今天是我们恋爱的第{{love_day.DATA}}天 
 
 {{birthday1.DATA}} 
