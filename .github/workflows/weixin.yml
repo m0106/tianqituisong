@@ -1,4 +1,4 @@
-      name: weixin
+      name:main.py
       on:
       workflow_dispatch:
       schedule: 
