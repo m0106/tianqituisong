@@ -31,7 +31,6 @@ def get_access_token():
     return access_token
  
  
-# 获取温度
 def get_weather(city_id):
     # 时间戳
     t = (int(round(time() * 1000)))
