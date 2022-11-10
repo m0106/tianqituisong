@@ -1,13 +1,11 @@
 {{date.DATA}} 
 
 地区：{{region.DATA}} 
-
 天气：{{weather.DATA}} 
-
-气温：{{temp.DATA}} 
-
-最高气温:{{max_temperature.DATA}} 
-最低气温:{{min_temperature.DATA}}
+最低气温: {{min_wd.DATA}} 
+最高气温: {{max_wd.DATA}} 
+相对湿度: {{shidu.DATA}} 
+生活指数: {{tips.DATA}} 
 
 风向：{{wind_dir.DATA}} 
 
