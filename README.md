@@ -6,8 +6,7 @@
 最高气温: {{max_wd.DATA}} 
 相对湿度: {{shidu.DATA}} 
 生活指数: {{tips.DATA}} 
-
-风向：{{wind_dir.DATA}} 
+ 
 
 今天是我们恋爱的第{{love_day.DATA}}天 
 
