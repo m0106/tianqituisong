@@ -233,3 +233,4 @@ if __name__ == "__main__":
     for user in users:
         send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
     os.system("pause")
+    sys.exit(1)
