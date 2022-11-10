@@ -1,20 +1,20 @@
-import random
-from time import localtime
-from requests import get, post
-from datetime import datetime, date
-from zhdate import ZhDate
-import sys
-import os
+    import random
+    from time import localtime
+    from requests import get, post
+    from datetime import datetime, date
+    from zhdate import ZhDate
+    import sys
+    import os
  
  
-def get_color():
+    def get_color():
     # 获取随机颜色
     get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF), range(n)))
     color_list = get_colors(100)
     return random.choice(color_list)
  
  
-def get_access_token():
+    def get_access_token():
     # appId
     app_id = config["app_id"]
     # appSecret
@@ -31,7 +31,7 @@ def get_access_token():
     return access_token
  
  
-def get_weather(city_id):
+    def get_weather(city_id):
     # 时间戳
     t = (int(round(time() * 1000)))
     headers = {
@@ -63,7 +63,7 @@ def get_weather(city_id):
         return city_name, weather, max_wd, min_wd,shidu, tips
  
  
-def get_birthday(birthday, year, today):
+    def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
     # 判断是否为农历生日
     if birthday_year[0] == "r":
@@ -104,7 +104,7 @@ def get_birthday(birthday, year, today):
     return birth_day
  
  
-def get_ciba():
+    def get_ciba():
     url = "http://open.iciba.com/dsapi/"
     headers = {
         'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ def get_ciba():
     return note_ch, note_en
  
  
-def send_message(to_user, access_token, weather, temp, template_id,user, city_name , weather, max_wd, min_wd,shidu, tips, note_ch, note_en):
+    def send_message(to_user, access_token, weather, temp, template_id,user, city_name , weather, max_wd, min_wd,shidu, tips, note_ch, note_en):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     year = localtime().tm_year
@@ -204,7 +204,7 @@ def send_message(to_user, access_token, weather, temp, template_id,user, city_na
         print(response)
  
  
-if __name__ == "__main__":
+    if __name__ == "__main__":
     try:
         with open("config.txt", encoding="utf-8") as f:
             config = eval(f.read())
