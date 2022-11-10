@@ -231,6 +231,8 @@ if __name__ == "__main__":
         note_ch, note_en = get_ciba()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_ch, note_en)
+        # 传入省份和市获取天气信息
+        city_name, weather, max_wd, min_wd,shidu,tips = get_weather(city_id)
+        send(template_id,user, access_token, city_name, weather, max_wd, min_wd,shidu,tips, yy,cqyq)
     os.system("pause")
     sys.exit(1)
