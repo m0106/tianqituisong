@@ -1,10 +1,8 @@
     import random
-    from time import localtime
-    from requests import get, post
-    from datetime import datetime, date
-    from zhdate import ZhDate
-    import sys
-    import os
+    from time import time, localtime
+    import requests
+    from datetime import datetime
+    import re
  
  
     def get_color():
