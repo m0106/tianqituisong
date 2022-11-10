@@ -11,7 +11,7 @@
  
 # 查询:https://img.weather.com.cn/newwebgis/fc/nation_fc24h_wea_2022010420.json
 # 城市id
-"city_id":"101180103",
+"city_id":"3,10,101180103",
 
 # 生日1，修改名字为对应需要显示的名字，如果生日为农历，在最前面加上r即可
 "birthday1": {"name": "苗苗宝贝", "birthday": "2002-01-06"},
